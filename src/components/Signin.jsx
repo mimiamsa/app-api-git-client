@@ -4,7 +4,7 @@ import React from 'react';
 export default function Signin() {
   return (
     <div>
-      <a className="primary-btn" href={`https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}&scope=user`}>Sign in with Github</a>
+      <a className="primary-btn" href={`https://github.com/login/oauth/authorize?client_id=1febc16fa8237d46307c&scope=user`}>Sign in with Github</a>
     </div>
   )
 }

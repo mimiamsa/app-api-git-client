@@ -1,33 +1,56 @@
 import React from 'react';
+import OrgInfos from './OrgInfos';
+import RepoCard from './RepoCard';
+import UserMainInfos from './UserMainInfos';
+import styled from "styled-components";
+import { device } from './device';
+
+
+const Wrapper = styled.div`
+width: 95%;
+`
+
+const RepoCardWrapper = styled.div`
+@media ${device.laptop} {
+  display: flex;
+  flex-direction: row;
+}
+`
+const NoOrg = styled.p`
+  padding: 18px 0;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  text-align: center;
+  font-weight: 400;
+  font-size: 0.9rem;
+  margin: 24px 0 48px;
+`
 
 
 const Profile = ({ user, repos, orgs }) => {
 
+
   return (
-    <div>
-      <h1>{user.name}</h1>
-      <p>{user.bio}</p>
-      <p>{user.public_repos}</p>
-      {repos.map((repo, i) => {
-        return (
-          <div key={i}>
-            <p>{repo.name}</p>
-            {/* repoLink */}
-            <p> commit : {repo.totalCommits}</p>
-          </div>
-        )
-      })}
-      <img src={user.avatar_url} alt="avatar" />
+    <Wrapper>
+
+      <UserMainInfos user={user} />
       {orgs.length > 0 ? orgs.map((org, i) => {
         return (
-          <div key={i}>
-            <p>{org.login}</p>
-            <img src={org.avatar_url} alt="org-avatar" />
-          </div>)
-      }) : <p>You’re not part of an organization</p>
+          <OrgInfos key={i} orgName={org.login}/>
+        )
+      }) : <NoOrg>You’re not part of an organization yet ...</NoOrg>
       }
-      {/* {orgs ? orgs.map((org, i) => <div key={i}> <p>{org.login}</p><img src={org.avatar_url} alt="org-avatar"/><div/>) : <p>You not part of an organization</p>} */}
-    </div>
+
+
+      <RepoCardWrapper>
+        {repos.length > 0 ? repos.map((repo, i) => {
+          return (
+            <RepoCard key={i} repoName={repo.name} repoCommits={repo.totalCommits}  repoUrl={repo.full_name}/>
+          )
+        }) : <NoOrg>You didn't create any repository yet ...</NoOrg>}
+
+      </RepoCardWrapper>
+    </Wrapper>
   )
 }
 

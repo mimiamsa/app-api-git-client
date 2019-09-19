@@ -50,7 +50,10 @@ const RepoCard = ({ repoName, repoCommits, repoUrl }) => {
     <CardWrapper target="_blank" href={`https://github.com/${repoUrl}`}>
       <Wrapper><FontAwesomeIcon icon="folder-open" /><p>{repoName}</p></Wrapper>
       <Hr />
-      <Wrapper><FontAwesomeIcon icon="comment-dots" /><p>{repoCommits} commit{repoCommits > 1 ? "s" :""}</p></Wrapper>
+      <Wrapper><FontAwesomeIcon icon="comment-dots" />
+      { repoCommits ? <p>{repoCommits} commit{repoCommits > 1 ? "s" :""}</p> : <p>No commit yet</p>}
+      
+      </Wrapper>
     </CardWrapper>
   )
 }

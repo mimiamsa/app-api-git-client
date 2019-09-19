@@ -45,7 +45,7 @@ const Profile = ({ user, repos, orgs }) => {
       <RepoCardWrapper>
         {repos.length > 0 ? repos.map((repo, i) => {
           return (
-            <RepoCard key={i} repoName={repo.name} repoCommits={repo.totalCommits}  repoUrl={repo.full_name}/>
+            <RepoCard key={i} repoName={repo.name} repoCommits={repo.totalCommits?repo.totalCommits: "" }  repoUrl={repo.full_name}/>
           )
         }) : <NoOrg>You didn't create any repository yet ...</NoOrg>}
 
